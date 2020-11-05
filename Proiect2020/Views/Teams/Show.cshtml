@@ -1,0 +1,44 @@
+﻿
+
+@{
+    /**/
+
+    ViewBag.Title = "Afisare Echipa";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>@ViewBag.Team.TeamName</p>
+<p>Lista TASKS</p>
+@foreach (var task in ViewBag.Tasks)
+{
+    <p>@task.Title</p>
+    <p>@task.TaskId</p>
+    <form method="post" action="/Tasks/Delete/@task.TaskId">
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-danger pull-right" type="submit">Delete Task</button>
+    </form>
+    <a class="btn btn-success pull-left" href="/Tasks/Show/@task.TaskId">Afiseaza task</a>
+    <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>
+
+    <br />
+    <hr />
+    <br />
+}
+<br />
+<a class="btn btn-info" href="/Tasks/New/@ViewBag.Team.TeamId">New Task</a>
+
+<form method="post" action="/Teams/Delete/@ViewBag.Team.TeamId">
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+    <button class="btn btn-success" type="submit">Sterge echipa</button>
+
+</form>
+<br />
+<a class="btn btn-success" href="/Teams/Index/">Afisare lista echipe</a>
+<a class="btn btn-success" href="/Teams/Edit/@ViewBag.Team.TeamId">Editare Echipa</a>
+
+<br />
+<hr />
+<br />

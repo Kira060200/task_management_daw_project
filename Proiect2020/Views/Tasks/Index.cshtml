@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var task in ViewBag.Tasks)
+{
+    <p>@task.Title</p>
+    <p>@task.TaskId</p>
+
+    <br />
+    <hr />
+    <br />
+}

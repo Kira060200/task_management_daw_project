@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+
+<h2>Adaugare Comment</h2>
+
+<form method="post" action="/Comments/New">
+
+    <label>COmment</label>
+    <br />
+    <textarea name="Content"></textarea>
+    <br /><br />
+    <input type="hidden" name="TaskId" value="@ViewBag.IdTask" />
+
+    <button class="btn btn-success" type="submit">Adauga comment</button>
+</form>
+
+
+
+
+
+
+
+
+
+        [Key]
+        public int CommentId { get; set; }
+        [Required]
+        public string Content { get; set; }
+        //trebuie adaugat user id
+        public DateTime Date { get; set; }
+        public int TaskId { get; set; }
+        public virtual Task Task { get; set; }

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Editare echipa";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post" action="/Teams/Edit/@ViewBag.Team.TeamId">
+
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    <label>Nume echipa</label>
+    <br /> <input type="text" name="TeamName" value="@ViewBag.Team.TeamName" />
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Modifica categoria</button>
+</form>
