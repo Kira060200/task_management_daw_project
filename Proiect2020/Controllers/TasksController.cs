@@ -87,7 +87,7 @@ namespace Proiect2020.Controllers
                     task.StartDate = requestTask.StartDate;
                     task.EndDate = requestTask.EndDate;
                     task.TeamId = requestTask.TeamId;
-                    db.SaveChanges(); db.SaveChanges();
+                    db.SaveChanges();
                     TempData["message"] = "Task-ul a fost modificat!";
                 }
                 return Redirect("/Teams/Show/" + task.TeamId);

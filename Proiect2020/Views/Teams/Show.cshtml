@@ -16,7 +16,7 @@
     <p>@task.TaskId</p>
     <form method="post" action="/Tasks/Delete/@task.TaskId">
         @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger pull-right" type="submit">Delete Task</button>
+        <button class="btn btn-danger pull-right" type="submit">Sterge Task</button>
     </form>
     <a class="btn btn-success pull-left" href="/Tasks/Show/@task.TaskId">Afiseaza task</a>
     <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>
