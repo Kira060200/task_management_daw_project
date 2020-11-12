@@ -5,7 +5,7 @@
 
     ViewBag.Title = "Afisare Echipa";
 }
-
+<h1>@ViewBag.Message</h1>
 <h2>@ViewBag.Title</h2>
 
 <p>@ViewBag.Task.Title</p>
@@ -15,18 +15,18 @@
     <p>@comment.Content</p>
     <form method="post" action="/Comments/Delete/@comment.CommentId">
         @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger pull-right" type="submit">Delete Comment</button>
+        <button class="btn btn-danger pull-right" type="submit">Sterge comentariu</button>
     </form>
-    <a class="btn btn-success pull-left" href="/Comments/Edit/@comment.CommentId">Modifica comment</a>
+    <a class="btn btn-success pull-left" href="/Comments/Edit/@comment.CommentId">Modifica comentariu</a>
 
     <br />
     <hr />
     <br />
 }
-<a class="btn btn-info" href="/Comments/New/@ViewBag.Task.TaskId">New Comment</a>
+<a class="btn btn-info" href="/Comments/New/@ViewBag.Task.TaskId">Adauga comentariu</a>
 
 <br />
-<a class="btn btn-success" href="/Teams/Index/">Afisare lista echipe</a>
+<a class="btn btn-success" href="/Teams/Show/@ViewBag.Task.TeamId">Afisare lista task-uri</a>
 <br />
 <hr />
 <br />

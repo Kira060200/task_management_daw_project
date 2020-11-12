@@ -28,7 +28,10 @@ namespace Proiect2020.Controllers
                         where comment.TaskId == task.TaskId
                         select comment;
             ViewBag.Comments = comments;
-
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
             return View();
         }
         public ActionResult New(int id)
@@ -45,6 +48,7 @@ namespace Proiect2020.Controllers
             {
                 db.Tasks.Add(task);
                 db.SaveChanges();
+                TempData["message"] = "Task-ul a fost adaugat!";
                 return Redirect("/Teams/Show/" + task.TeamId);
             }
             catch (Exception e)
@@ -57,13 +61,14 @@ namespace Proiect2020.Controllers
             Task task = db.Tasks.Find(id);
             db.Tasks.Remove(task);
             db.SaveChanges();
+            TempData["message"] = "Task-ul a fost sters";
             return Redirect("/Teams/Show/" + task.TeamId);
         }
         public ActionResult Edit(int id)
         {
             Task task = db.Tasks.Find(id);
             ViewBag.Task = task;
-            ViewBag.Title = "Sukoon";
+            //ViewBag.Title = "Sukoon";
 
             return View();
         }
@@ -83,6 +88,7 @@ namespace Proiect2020.Controllers
                     task.EndDate = requestTask.EndDate;
                     task.TeamId = requestTask.TeamId;
                     db.SaveChanges(); db.SaveChanges();
+                    TempData["message"] = "Task-ul a fost modificat!";
                 }
                 return Redirect("/Teams/Show/" + task.TeamId);
             }
