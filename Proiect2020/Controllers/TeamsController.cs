@@ -78,6 +78,7 @@ namespace Proiect2020.Controllers
                 {
                     team.TeamName = requestTeam.TeamName;
                     db.SaveChanges();
+                    TempData["message"] = "Echipa a fost modificata!";
                 }
 
                 return RedirectToAction("Index");
@@ -94,6 +95,7 @@ namespace Proiect2020.Controllers
             Team team = db.Teams.Find(id);
             db.Teams.Remove(team);
             db.SaveChanges();
+            TempData["message"] = "Echipa a fost stersa";
             return RedirectToAction("Index");
         }
     }
