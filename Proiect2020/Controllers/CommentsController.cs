@@ -39,10 +39,17 @@ namespace Proiect2020.Controllers
             comm.Date = DateTime.Now;
             try
             {
-                db.Comments.Add(comm);
-                db.SaveChanges();
-                TempData["message"] = "Comentariul a fost adaugat!";
-                return Redirect("/Tasks/Show/" + comm.TaskId);
+                if (ModelState.IsValid)
+                {
+                    db.Comments.Add(comm);
+                    db.SaveChanges();
+                    TempData["message"] = "Comentariul a fost adaugat!";
+                    return Redirect("/Tasks/Show/" + comm.TaskId);
+                }
+                else
+                {
+                    return View(comm);
+                }
             }
 
             catch (Exception e)
@@ -64,18 +71,29 @@ namespace Proiect2020.Controllers
         {
             try
             {
-                Comment comm = db.Comments.Find(id);
-                if (TryUpdateModel(comm))
+                if (ModelState.IsValid)
                 {
-                    comm.Content = requestComment.Content;
-                    db.SaveChanges();
-                    TempData["message"] = "Comentariul a fost modificat!";
+                    Comment comm = db.Comments.Find(id);
+                    if (TryUpdateModel(comm))
+                    {
+                        comm.Content = requestComment.Content;
+                        db.SaveChanges();
+                        TempData["message"] = "Comentariul a fost modificat!";
+                        return Redirect("/Tasks/Show/" + comm.TaskId);
+                    }
+                    else
+                    {
+                        return View(requestComment);
+                    }
                 }
-                return Redirect("/Tasks/Show/" + comm.TaskId);
+                else
+                {
+                    return View(requestComment);
+                }
             }
             catch (Exception e)
             {
-                return View();
+                return View(requestComment);
             }
 
         }

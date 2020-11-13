@@ -3,13 +3,13 @@
 @{
     /**/
 
-    ViewBag.Title = "Afisare Echipa";
+    ViewBag.Title = "Afisare Task";
 }
 <h1>@ViewBag.Message</h1>
 <h2>@ViewBag.Title</h2>
 
 <p>@ViewBag.Task.Title</p>
-<p>Lista Comment pt = @ViewBag.Task.Title</p>
+<p>Lista comentarii ptentru task-ul @ViewBag.Task.Title</p>
 @foreach (var comment in ViewBag.Comments)
 {
     <p>@comment.Content</p>

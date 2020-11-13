@@ -10,7 +10,8 @@ namespace Proiect2020.Models
     {
         [Key]
         public int CommentId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Continutul comentariului este obligatoriu")]
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
         //trebuie adaugat user id 
         public DateTime Date { get; set; }
