@@ -5,7 +5,7 @@
 
     ViewBag.Title = "Afisare Echipa";
 }
-
+<h1>@ViewBag.Message</h1>
 <h2>@ViewBag.Title</h2>
 
 <p>@ViewBag.Team.TeamName</p>
@@ -16,7 +16,7 @@
     <p>@task.TaskId</p>
     <form method="post" action="/Tasks/Delete/@task.TaskId">
         @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger pull-right" type="submit">Delete Task</button>
+        <button class="btn btn-danger pull-right" type="submit">Sterge Task</button>
     </form>
     <a class="btn btn-success pull-left" href="/Tasks/Show/@task.TaskId">Afiseaza task</a>
     <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>
@@ -26,7 +26,7 @@
     <br />
 }
 <br />
-<a class="btn btn-info" href="/Tasks/New/@ViewBag.Team.TeamId">New Task</a>
+<a class="btn btn-info" href="/Tasks/New/@ViewBag.Team.TeamId">Adauga task nou</a>
 
 <form method="post" action="/Teams/Delete/@ViewBag.Team.TeamId">
 

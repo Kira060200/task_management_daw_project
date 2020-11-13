@@ -24,6 +24,7 @@ namespace Proiect2020.Controllers
             Comment comm = db.Comments.Find(id);
             db.Comments.Remove(comm);
             db.SaveChanges();
+            TempData["message"] = "Comentariul a fost sters";
             return Redirect("/Tasks/Show/" + comm.TaskId);
         }
         public ActionResult New(int id)
@@ -40,6 +41,7 @@ namespace Proiect2020.Controllers
             {
                 db.Comments.Add(comm);
                 db.SaveChanges();
+                TempData["message"] = "Comentariul a fost adaugat!";
                 return Redirect("/Tasks/Show/" + comm.TaskId);
             }
 
@@ -67,6 +69,7 @@ namespace Proiect2020.Controllers
                 {
                     comm.Content = requestComment.Content;
                     db.SaveChanges();
+                    TempData["message"] = "Comentariul a fost modificat!";
                 }
                 return Redirect("/Tasks/Show/" + comm.TaskId);
             }

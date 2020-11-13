@@ -18,12 +18,19 @@ namespace Proiect2020.Controllers
                         select team;
             ViewBag.Teams = teams;
 
-
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
             return View();
         }
 
         public ActionResult Show(int id)
         {
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
             Team team = db.Teams.Find(id);
             ViewBag.Team = team;
             var tasks = from task in db.Tasks.Include("Team")
@@ -44,6 +51,7 @@ namespace Proiect2020.Controllers
             {
                 db.Teams.Add(cat);
                 db.SaveChanges();
+                TempData["message"] = "Echipa a fost adaugata!";
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -70,6 +78,7 @@ namespace Proiect2020.Controllers
                 {
                     team.TeamName = requestTeam.TeamName;
                     db.SaveChanges();
+                    TempData["message"] = "Echipa a fost modificata!";
                 }
 
                 return RedirectToAction("Index");
@@ -86,6 +95,7 @@ namespace Proiect2020.Controllers
             Team team = db.Teams.Find(id);
             db.Teams.Remove(team);
             db.SaveChanges();
+            TempData["message"] = "Echipa a fost stersa";
             return RedirectToAction("Index");
         }
     }
