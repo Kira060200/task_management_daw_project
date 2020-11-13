@@ -10,6 +10,7 @@
     @Html.Label("TeamName", "Nume Echipa")
     <br />
     @Html.EditorFor(m => m.TeamName)
+    @Html.ValidationMessage("TeamName", null, new { @class = "text-danger" })
     <br /><br />
     <button class="btn btn-sm btn-success" type="submit">Modifica echipa</button>
 </form>

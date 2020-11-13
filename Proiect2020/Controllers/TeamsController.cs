@@ -41,7 +41,8 @@ namespace Proiect2020.Controllers
         }
         public ActionResult New()
         {
-            return View();
+            Team team = new Team();
+            return View(team);
         }
 
         [HttpPost]
@@ -49,14 +50,22 @@ namespace Proiect2020.Controllers
         {
             try
             {
-                db.Teams.Add(cat);
-                db.SaveChanges();
-                TempData["message"] = "Echipa a fost adaugata!";
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    
+                    db.Teams.Add(cat);
+                    db.SaveChanges();
+                    TempData["message"] = "Echipa a fost adaugata!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(cat);
+                }
             }
             catch (Exception e)
             {
-                return View();
+                return View(cat);
             }
         }
         public ActionResult Edit(int id)
@@ -73,19 +82,26 @@ namespace Proiect2020.Controllers
         {
             try
             {
-                Team team = db.Teams.Find(id);
-                if (TryUpdateModel(team))
+                if (ModelState.IsValid)
                 {
-                    team.TeamName = requestTeam.TeamName;
-                    db.SaveChanges();
-                    TempData["message"] = "Echipa a fost modificata!";
-                }
+                    Team team = db.Teams.Find(id);
+                    if (TryUpdateModel(team))
+                    {
+                        team.TeamName = requestTeam.TeamName;
+                        db.SaveChanges();
+                        TempData["message"] = "Echipa a fost modificata!";
+                    }
 
-                return RedirectToAction("Index");
-            }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(requestTeam);
+                }
+        }
             catch (Exception e)
             {
-                return View();
+                return View(requestTeam);
             }
         }
 
@@ -95,7 +111,7 @@ namespace Proiect2020.Controllers
             Team team = db.Teams.Find(id);
             db.Teams.Remove(team);
             db.SaveChanges();
-            TempData["message"] = "Echipa a fost stersa";
+            TempData["message"] = "Echipa a fost stearsa";
             return RedirectToAction("Index");
         }
     }
