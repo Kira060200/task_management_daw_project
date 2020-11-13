@@ -56,7 +56,7 @@ namespace Proiect2020.Controllers
         {
             Comment comm = db.Comments.Find(id);
             ViewBag.Comment = comm;
-            return View();
+            return View(comm);
         }
 
         [HttpPut]
