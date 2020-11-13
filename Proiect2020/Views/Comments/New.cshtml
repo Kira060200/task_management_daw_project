@@ -1,4 +1,3 @@
-﻿
 @{
     ViewBag.Title = "New";
 }
@@ -8,13 +7,12 @@
 
 <form method="post" action="/Comments/New">
 
-    <label>Comment</label>
+    @Html.Label("Content", "Content Comm")
     <br />
-    <textarea name="Content"></textarea>
+    @Html.TextBox("Content", null, new { @class = "form-control" })
     <br /><br />
     <input type="hidden" name="TaskId" value="@ViewBag.IdTask" />
-
+    <!--HTML.Hidden, nu poate fi folosit pentru ca trebuie inclus, inca nu sunt sigur cum.-->
     <button class="btn btn-success" type="submit">Adauga comment</button>
 </form>
-
 
