@@ -1,12 +1,11 @@
-﻿
 @{
     ViewBag.Title = "Adaugare Echipa";
 }
 
 
-
-<h2>Adaugare Categorie</h2>
-
+<h2>Adaugare Echipa</h2>
+<!--debug in caz de -->
+<!--
 <form method="post" action="/Teams/New">
 
     <label>Nume Echipa</label>
@@ -14,5 +13,16 @@
     <input type="text" name="TeamName" />
     <br /><br />
     <button class="btn btn-success" type="submit">Adauga echipa</button>
+</form>
+-->
+<form method="post" action="/Teams/New">
+    @Html.Label("TeamName", "Nume Echipa")
+    <br />
+    @Html.TextBox("TeamName", null, new { @class = "form-control" })
+    <br /><br />
+    <br />
+    <button type="submit">Adauga echipa</button>
+    <br />
+
 </form>
 
