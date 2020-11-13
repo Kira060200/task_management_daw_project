@@ -64,7 +64,7 @@ namespace Proiect2020.Controllers
 
             Team team = db.Teams.Find(id);
             ViewBag.Team = team;
-            return View();
+            return View(team);
         }
 
 
