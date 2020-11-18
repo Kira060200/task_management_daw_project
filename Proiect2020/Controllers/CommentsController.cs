@@ -1,4 +1,4 @@
-﻿using Proiect2020.Models;
+using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
