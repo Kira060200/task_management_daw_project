@@ -1,4 +1,4 @@
-﻿using Proiect2020.Models;
+using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +25,8 @@ namespace Proiect2020.Controllers
             Task task = db.Tasks.Find(id);
             ViewBag.Task = task;
             var comments = from comment in db.Comments.Include("Task")
-                        where comment.TaskId == task.TaskId
-                        select comment;
+                           where comment.TaskId == task.TaskId
+                           select comment;
             ViewBag.Comments = comments;
             if (TempData.ContainsKey("message"))
             {
@@ -36,7 +36,7 @@ namespace Proiect2020.Controllers
         }
         public ActionResult New(int id)
         {
-            
+
             ViewBag.IdEchip = id;
             return View();
         }
@@ -49,7 +49,7 @@ namespace Proiect2020.Controllers
                 db.Tasks.Add(task);
                 db.SaveChanges();
                 TempData["message"] = "Task-ul a fost adaugat!";
-                return Redirect("/Teams/Show/" + task.TeamId);
+                return Redirect("/Projects/Show/" + task.ProjectId);
             }
             catch (Exception e)
             {
@@ -62,7 +62,7 @@ namespace Proiect2020.Controllers
             db.Tasks.Remove(task);
             db.SaveChanges();
             TempData["message"] = "Task-ul a fost sters";
-            return Redirect("/Teams/Show/" + task.TeamId);
+            return Redirect("/Projects/Show/" + task.ProjectId);
         }
         public ActionResult Edit(int id)
         {
@@ -86,11 +86,11 @@ namespace Proiect2020.Controllers
                     task.Content = requestTask.Content;
                     task.StartDate = requestTask.StartDate;
                     task.EndDate = requestTask.EndDate;
-                    task.TeamId = requestTask.TeamId;
+                    task.ProjectId = requestTask.ProjectId;
                     db.SaveChanges();
                     TempData["message"] = "Task-ul a fost modificat!";
                 }
-                return Redirect("/Teams/Show/" + task.TeamId);
+                return Redirect("/Projects/Show/" + task.ProjectId);
             }
             catch (Exception e)
             {
