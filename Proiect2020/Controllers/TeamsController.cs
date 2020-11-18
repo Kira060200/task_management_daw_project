@@ -1,4 +1,4 @@
-﻿using Proiect2020.Models;
+using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +33,10 @@ namespace Proiect2020.Controllers
             }
             Team team = db.Teams.Find(id);
             ViewBag.Team = team;
-            var tasks = from task in db.Tasks.Include("Team")
-                        where task.TeamId == id
-                        select task;
-            ViewBag.Tasks = tasks;
+            var projects = from project in db.Projects.Include("Team")
+                           where project.TeamId == id
+                           select project;
+            ViewBag.Projects = projects;
             return View();
         }
         public ActionResult New()
@@ -52,7 +52,7 @@ namespace Proiect2020.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     db.Teams.Add(cat);
                     db.SaveChanges();
                     TempData["message"] = "Echipa a fost adaugata!";
@@ -98,7 +98,7 @@ namespace Proiect2020.Controllers
                 {
                     return View(requestTeam);
                 }
-        }
+            }
             catch (Exception e)
             {
                 return View(requestTeam);
