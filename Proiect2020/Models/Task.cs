@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,10 +17,10 @@ namespace Proiect2020.Models
         public string Content { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int TeamId { get; set; }
+        public int ProjectId { get; set; }
 
 
-        public virtual Team Team { get; set; }
+        public virtual Project Project { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }
 }
