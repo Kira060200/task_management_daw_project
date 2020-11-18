@@ -1,9 +1,9 @@
-﻿
+
 @{
     ViewBag.Title = "New";
 }
 
-<h2>Adaugare task pentru echipa @ViewBag.IdEchip</h2>
+<h2>Adaugare articol @ViewBag.IdEchip</h2>
 <form method="post" action="/Tasks/New">
     <label>Titlu task</label>
     <input type="text" name="Title" />
@@ -19,8 +19,8 @@
     <br />
     <input type="date" name="EndDate" />
     <br />
-    <input type="hidden" name="TeamId" value="@ViewBag.IdEchip" />
+    <input type="hidden" name="ProjectId" value="@ViewBag.IdEchip" />
 
     <br />
-    <button type="submit">Adauga task</button>
+    <button type="submit">Adauga articol</button>
 </form>
