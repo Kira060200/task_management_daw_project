@@ -1,4 +1,4 @@
-using Proiect2020.Models;
+﻿using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Proiect2020.Controllers
 {
     public class TasksController : Controller
     {
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Tasks
         public ActionResult Index()
         {

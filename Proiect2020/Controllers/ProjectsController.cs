@@ -10,14 +10,13 @@ namespace Proiect2020.Controllers
     public class ProjectsController : Controller
     {
         // GET: Teams
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
             /*var teams = from team in db.Teams
                         select team;
             ViewBag.Teams = teams;
-
             if (TempData.ContainsKey("message"))
             {
                 ViewBag.Message = TempData["message"];
@@ -87,7 +86,7 @@ namespace Proiect2020.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Project project= db.Projects.Find(id);
+                    Project project = db.Projects.Find(id);
                     if (TryUpdateModel(project))
                     {
                         project.ProjectName = requestProject.ProjectName;

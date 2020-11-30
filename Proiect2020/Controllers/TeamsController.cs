@@ -1,4 +1,4 @@
-using Proiect2020.Models;
+﻿using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Proiect2020.Controllers
     public class TeamsController : Controller
     {
         // GET: Teams
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
