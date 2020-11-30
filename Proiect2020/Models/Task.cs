@@ -19,6 +19,8 @@ namespace Proiect2020.Models
         public DateTime EndDate { get; set; }
         public int ProjectId { get; set; }
 
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual Project Project { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

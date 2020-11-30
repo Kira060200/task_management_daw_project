@@ -1,4 +1,5 @@
-﻿using Proiect2020.Models;
+﻿using Microsoft.AspNet.Identity;
+using Proiect2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace Proiect2020.Controllers
                         select task;
             ViewBag.Tasks = tasks;
             */
+            var tasks = db.Tasks.Include("User");
+            ViewBag.Tasks = tasks;
             return View();
         }
         [Authorize(Roles = "Membru,Organizator,Admin")]
@@ -34,6 +37,7 @@ namespace Proiect2020.Controllers
             {
                 ViewBag.Message = TempData["message"];
             }
+            SetAccessRights();
             return View();
         }
         [Authorize(Roles = "Organizator,Admin")]
@@ -74,7 +78,6 @@ namespace Proiect2020.Controllers
         {
             Task task = db.Tasks.Find(id);
             ViewBag.Task = task;
-            //ViewBag.Title = "Sukoon";
 
             return View();
         }
@@ -104,6 +107,18 @@ namespace Proiect2020.Controllers
                 return View();
             }
 
+        }
+        private void SetAccessRights()
+        {
+            ViewBag.afisareButoane = false;
+
+            if (User.IsInRole("Organizator") || User.IsInRole("Admin"))
+            {
+                ViewBag.afisareButoane = true;
+            }
+
+            ViewBag.esteAdmin = User.IsInRole("Admin");
+            ViewBag.utilizatorCurent = User.Identity.GetUserId();
         }
     }
 }

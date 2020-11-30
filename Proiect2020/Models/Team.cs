@@ -15,6 +15,9 @@ namespace Proiect2020.Models
         [StringLength(50, ErrorMessage = "Numele echipei nu poate avea mai mult de 50 caractere ")]
         public string TeamName { get; set; }
 
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
         public virtual ICollection<Project> Projects { get; set; }
     }
 }

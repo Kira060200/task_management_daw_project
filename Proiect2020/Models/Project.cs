@@ -14,6 +14,8 @@ namespace Proiect2020.Models
         public string ProjectName { get; set; }
         public int TeamId { get; set; }
 
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual Team Team { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
