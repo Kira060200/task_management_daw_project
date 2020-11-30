@@ -13,12 +13,14 @@ namespace Proiect2020.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Delete(int id)
         {
             Comment comm = db.Comments.Find(id);
@@ -27,6 +29,7 @@ namespace Proiect2020.Controllers
             TempData["message"] = "Comentariul a fost sters";
             return Redirect("/Tasks/Show/" + comm.TaskId);
         }
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult New(int id)
         {
 
@@ -34,6 +37,7 @@ namespace Proiect2020.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult New(Comment comm)
         {
             comm.Date = DateTime.Now;
@@ -59,6 +63,7 @@ namespace Proiect2020.Controllers
 
         }
 
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Edit(int id)
         {
             Comment comm = db.Comments.Find(id);
@@ -67,6 +72,7 @@ namespace Proiect2020.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Edit(int id, Comment requestComment)
         {
             try

@@ -16,11 +16,7 @@ namespace Proiect2020
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Teams", action = "Index", id = UrlParameter.Optional }
-            ); routes.MapRoute(
-                name: "Default1",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Tasks", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

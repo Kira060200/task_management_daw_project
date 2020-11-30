@@ -11,6 +11,7 @@ namespace Proiect2020.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Tasks
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Index()
         {
             /*var tasks = from task in db.Tasks.Include("Team")
@@ -20,6 +21,7 @@ namespace Proiect2020.Controllers
             */
             return View();
         }
+        [Authorize(Roles = "Membru,Organizator,Admin")]
         public ActionResult Show(int id)
         {
             Task task = db.Tasks.Find(id);
@@ -34,6 +36,7 @@ namespace Proiect2020.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Organizator,Admin")]
         public ActionResult New(int id)
         {
 
@@ -42,6 +45,7 @@ namespace Proiect2020.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Organizator,Admin")]
         public ActionResult New(Task task)
         {
             try
@@ -56,6 +60,7 @@ namespace Proiect2020.Controllers
                 return View();
             }
         }
+        [Authorize(Roles = "Organizator,Admin")]
         public ActionResult Delete(int id)
         {
             Task task = db.Tasks.Find(id);
@@ -64,6 +69,7 @@ namespace Proiect2020.Controllers
             TempData["message"] = "Task-ul a fost sters";
             return Redirect("/Projects/Show/" + task.ProjectId);
         }
+        [Authorize(Roles = "Organizator,Admin")]
         public ActionResult Edit(int id)
         {
             Task task = db.Tasks.Find(id);
@@ -74,6 +80,7 @@ namespace Proiect2020.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Organizator,Admin")]
         public ActionResult Edit(int id, Task requestTask)
         {
             try

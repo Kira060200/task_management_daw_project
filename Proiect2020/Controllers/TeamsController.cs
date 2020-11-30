@@ -11,7 +11,7 @@ namespace Proiect2020.Controllers
     {
         // GET: Teams
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        // TO:DO Modificam si aici authorize-ul ca sa vada fiecare doar echipele din care fac parte
         public ActionResult Index()
         {
             var teams = from team in db.Teams
@@ -39,6 +39,7 @@ namespace Proiect2020.Controllers
             ViewBag.Projects = projects;
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             Team team = new Team();
@@ -46,6 +47,7 @@ namespace Proiect2020.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult New(Team cat)
         {
             try
@@ -68,6 +70,7 @@ namespace Proiect2020.Controllers
                 return View(cat);
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -78,6 +81,7 @@ namespace Proiect2020.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Team requestTeam)
         {
             try
@@ -106,6 +110,7 @@ namespace Proiect2020.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Team team = db.Teams.Find(id);
