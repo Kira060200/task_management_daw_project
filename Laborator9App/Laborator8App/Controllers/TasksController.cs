@@ -136,6 +136,7 @@ namespace Laborator8App.Controllers
                     task.StartDate = requestTask.StartDate;
                     task.EndDate = requestTask.EndDate;
                     task.ProjectId = requestTask.ProjectId;
+                    //task.WorkerName = requestTask.WorkerName;
                     db.SaveChanges();
                     TempData["message"] = "Task-ul a fost modificat!";
                 }
@@ -147,11 +148,52 @@ namespace Laborator8App.Controllers
             }
 
         }
+
+        [Authorize(Roles = "Member")]
+        public ActionResult EditStatus(int id)
+        {
+            TaskClass task = db.Tasks.Find(id);
+            ViewBag.Task = task;
+            ViewBag.Status = GetAllStatusList();
+            if (task.WorkerName == User.Identity.GetUserName())
+                return View();
+            else
+            {
+                TempData["message"] = "Nu aveti dreptul sa faceti modificari!";
+                return RedirectToAction("../Projects/Show/" + task.ProjectId);
+            }
+
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "Member")]
+        public ActionResult EditStatus(int id, TaskClass requestTask)
+        {
+            try
+            {
+                TaskClass task = db.Tasks.Find(id);
+                ViewBag.Status = GetAllStatusList();
+                if (TryUpdateModel(task))
+                {
+                    task.Status = requestTask.Status;
+                    db.SaveChanges();
+                    TempData["message"] = "Statusul task-ul a fost modificat!";
+                }
+                return Redirect("/Projects/Show/" + task.ProjectId);
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+
+        }
+
+
         private void SetAccessRights()
         {
             ViewBag.afisareButoane = false;
 
-            if (User.IsInRole("Organizator") || User.IsInRole("Admin"))
+            if (User.IsInRole("Leader") || User.IsInRole("Admin"))
             {
                 ViewBag.afisareButoane = true;
             }

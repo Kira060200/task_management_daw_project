@@ -38,7 +38,14 @@ namespace Laborator8App.Controllers
                         where task.ProjectId == id
                         select task;
             ViewBag.Tasks = tasks;
+            ViewBag.UserNameAsigned = User.Identity.GetUserName();
             ViewBag.UserIdCur = User.Identity.GetUserId();
+            /*try
+            {
+                ViewBag.UserNameAsigned = (from us in db.Users
+                                           where us.Id == User.Identity.GetUserId()
+                                           select us.UserName).First();
+            }catch(Exception e) { }*/
             return View();
         }
         [Authorize(Roles = "Leader,Admin")]
@@ -52,7 +59,7 @@ namespace Laborator8App.Controllers
             project.UserId = User.Identity.GetUserId();
             string idu = User.Identity.GetUserId();
             return idu == team.UserId || User.IsInRole("Admin") ? (ActionResult)View(project) : Redirect("/Teams/Show/" + id);
-            return View(project);
+            //return View(project);
         }
 
         [HttpPost]

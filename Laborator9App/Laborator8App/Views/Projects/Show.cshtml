@@ -18,13 +18,17 @@
     <h2>@ViewBag.Title</h2>
 
     <p>@ViewBag.Project.ProjectName</p>
-
     @foreach (var task in ViewBag.Tasks)
     {
         <p>@task.Title</p><br />
         if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
         {
-        <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>}
+            <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>
+        }
+        if (ViewBag.UserNameAsigned == @task.WorkerName)
+        {
+            <a class="btn btn-success pull-left" href="/Tasks/EditStatus/@task.TaskId">Modifica status task</a>
+        }
         <a class="btn btn-success pull-left" href="/Tasks/Show/@task.TaskId">Afiseaza task</a>
         if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
         {
@@ -41,8 +45,8 @@
     <br />
     @if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
     {
-    <a class="btn btn-info" href="/Tasks/New/@ViewBag.Project.ProjectId">Adauga task</a>
-    <br />}
+        <a class="btn btn-info" href="/Tasks/New/@ViewBag.Project.ProjectId">Adauga task</a>
+        <br />}
     <a class="btn btn-success" href="/Teams/Index/">Afisare lista echipe</a>
     <br />
     <hr />
