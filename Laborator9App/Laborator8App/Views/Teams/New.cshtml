@@ -1,0 +1,35 @@
+﻿@model Laborator8App.Models.Team
+@{
+    ViewBag.Title = "Adaugare Echipa";
+}
+
+
+<h2>Adaugare Echipa</h2>
+<!--debug in caz de -->
+<!--
+<form method="post" action="/Teams/New">
+    <label>Nume Echipa</label>
+    <br />
+    <input type="text" name="TeamName" />
+    <br /><br />
+    <button class="btn btn-success" type="submit">Adauga echipa</button>
+</form>
+
+-->
+<br />
+
+
+
+
+
+<form method="post" action="/Teams/New">
+    @Html.Label("TeamName", "Nume Echipa")
+    <br />
+    @Html.TextBox("TeamName", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.TeamName, null, new { @class = "text-danger" })
+    <br /><br />
+    <br />
+    <button type="submit">Adauga echipa</button>
+    <br />
+
+</form>

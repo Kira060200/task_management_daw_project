@@ -1,0 +1,21 @@
+﻿
+
+@{
+    ViewBag.Title = "New";
+}
+
+
+<h2>Adaugare Proiect</h2>
+
+<form method="post" action="/Projects/New">
+
+    @Html.Label("ProjectName", "Nume Proj")
+    <br />
+    @Html.TextArea("ProjectName", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Projectname", "", new { @class = "text-danger" })
+    <br /><br />
+   <input type="hidden" name="TeamId" value="@ViewBag.IdEchip" />
+
+    <!--HTML.Hidden, nu poate fi folosit pentru ca trebuie inclus, inca nu sunt sigur cum.-->
+    <button class="btn btn-success" type="submit">Adauga Proiect</button>
+</form>

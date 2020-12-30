@@ -1,0 +1,29 @@
+﻿@model Laborator8App.Models.TaskClass
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Adaugare task</h2>
+<form method="post" action="/Tasks/New">
+    <label>Titlu task</label>
+    <input type="text" name="Title" />
+    <br />
+
+    <label>Selecteaza statusul</label>
+    @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.Status, "Value", "Text"), "Selecteaza statusul")
+    <label>Continut task</label>
+    <textarea name="Content"></textarea>
+    <br />
+    <label>Task Holder Username</label>
+    <textarea name="WorkerName"></textarea>
+    <br />
+    <input type="hidden" name="StartDate" value="@DateTime.Now" />
+    <br />
+    <br />
+    <input type="date" name="EndDate" />
+    <br />
+    <input type="hidden" name="ProjectId" value="@ViewBag.IdEchip" />
+
+    <br />
+    <button type="submit">Adauga task</button>
+</form>
