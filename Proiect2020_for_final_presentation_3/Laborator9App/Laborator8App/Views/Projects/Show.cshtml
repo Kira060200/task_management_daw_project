@@ -1,0 +1,55 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Afisare Proiect";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/ButtonHome.css")
+
+</head>
+<body>
+
+    <h1 style="color:white !important">@ViewBag.Project.ProjectName</h1>
+    <br />
+    <hr />
+    @foreach (var task in ViewBag.Tasks)
+    {
+        <h2 style="color:white !important">@task.Title</h2>
+        if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
+        {
+            <a class="btn btn-success pull-left" href="/Tasks/Edit/@task.TaskId">Modifica task</a>
+        }
+        if (ViewBag.UserNameAsigned == @task.WorkerName)
+        {
+            <a class="btn btn-success pull-left" href="/Tasks/EditStatus/@task.TaskId">Modifica status task</a>
+        }
+        <a class="btn btn-success pull-left" href="/Tasks/Show/@task.TaskId">Afiseaza task</a>
+        if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
+        {
+            <form method="post" action="/Tasks/Delete/@task.TaskId">
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger pull-right" type="submit">Sterge task</button>
+            </form>}
+
+        <br />
+        <br />
+
+    }
+
+    <br />
+    @if (User.IsInRole("Admin") || ViewBag.UserIdCur == ViewBag.Project.UserId)
+    {
+        <a class="btn btn-info" href="/Tasks/New/@ViewBag.Project.ProjectId">Adauga task</a>
+        <br />}
+    <a class="btn btn-success" href="/Teams/Show/@ViewBag.Project.TeamId">Afisare lista proiecte</a>
+
+</body>
+</html>

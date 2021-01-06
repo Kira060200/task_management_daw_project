@@ -1,0 +1,18 @@
+﻿@model  Laborator8App.Models.Comment
+@{
+    ViewBag.Title = "Edit";
+}
+<div style=" color:black; background: rgb(69,53,53); background: linear-gradient(254deg, rgba(69,53,53,1) 64%, rgba(115,54,54,1) 95%) !important">
+    <form method="post" action="/Comments/Edit/@Model.CommentId">
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        <br />
+        @Html.HiddenFor(m => m.CommentId)
+        <br />
+        @Html.Label("Content", "Content")
+        <br />
+        @Html.EditorFor(m => m.Content)
+        @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+        <br /><br />
+        <button class="btn btn-sm btn-success" type="submit">Modifica comentariu</button>
+    </form>
+</div>
