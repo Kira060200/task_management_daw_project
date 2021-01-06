@@ -1,0 +1,52 @@
+﻿@model Laborator8App.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Detalii utilizator";
+}
+<div style=" color:black; background: rgb(85,14,150);
+background: linear-gradient(254deg, rgba(85,14,150,1) 42%, rgba(13,213,80,1) 64%, rgba(82,0,0,1) 95%) !important">
+
+    <ol class="breadcrumb">
+        <li><h3>@ViewBag.Title</h3></li>
+    </ol>
+
+    <div class="panel-heading">Nume utilizator: @Model.UserName</div>
+
+    <div class="panel-body">
+
+        <i class="glyphicon glyphicon-envelope"></i> Email utilizator: <span class="label label-default">@Model.Email</span>
+        <br />
+        <i class="glyphicon glyphicon-th-list"></i> Rol utilizator: @ViewBag.roleName
+
+
+        <br /><br />
+
+        @if (@Model.PhoneNumber != null)
+        {
+            <i class="glyphicon glyphicon-phone"></i>@:Telefon utilizator:<span class="label label-default">@Model.PhoneNumber</span>
+
+
+
+
+
+
+
+
+        }
+
+    </div>
+
+    @if ((string)Model.Id != ViewBag.utilizatorCurent)
+    {
+        <div class="panel-footer">
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Users", routeValues: new { id = @Model.Id }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <br />
+                <button class="btn btn-success" type="submit">Sterge utilizator</button>
+
+            }
+        </div>
+    }
+
+</div>

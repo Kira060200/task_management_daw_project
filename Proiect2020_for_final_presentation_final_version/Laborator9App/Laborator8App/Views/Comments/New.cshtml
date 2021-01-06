@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+
+<h1>Adaugare Comment</h1>
+<center>
+    <form method="post" action="/Comments/New">
+
+        @Html.Label("Content", "")
+        <br />
+        @Html.TextArea("Content", "Continut comentariu", new { @class = "form-control" })
+        @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+        <br /><br />
+        <input type="hidden" name="TaskId" value="@ViewBag.IdTask" />
+        <!--HTML.Hidden, nu poate fi folosit pentru ca trebuie inclus, inca nu sunt sigur cum.-->
+        <button class="btn btn-info" type="submit">Adauga comentariu</button>
+    </form>
+</center>

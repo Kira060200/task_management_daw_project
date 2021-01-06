@@ -1,0 +1,31 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Lista echipe";
+}
+<h1>@ViewBag.Message</h1>
+<h2>@ViewBag.Title</h2>
+
+<br />
+@foreach (var team in ViewBag.Teams)
+{
+    <div class="panel-heading"> Echipa: @team.TeamName</div>
+
+    <div class="panel-body">
+
+        <i></i> Id echipa: <span class="label label-default">@team.TeamId</span>
+
+        <br /><br />
+
+    </div>
+
+    <div class="panel-footer">
+
+        <a class="btn btn-sm btn-success" href="/Teams/Edit/@team.TeamId"> Editare echipa</a>
+        <a class="btn btn-sm btn-success" href="/Teams/Show/@team.TeamId"> Vizualizare echipa</a>
+
+    </div>
+
+    <br /><br />
+}
+<br />
