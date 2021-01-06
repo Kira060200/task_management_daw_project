@@ -1,0 +1,67 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/ButtonHome.css")
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar">
+                        <img src="~/Content/Images/logo2.png" />
+                    </span>
+                    <span class="icon-bar"><img src="~/Content/Images/logo2.png" /></span>
+                    <span class="icon-bar"><img src="~/Content/Images/logo2.png" /></span>
+                </button>
+                @Html.ActionLink("TaskManagementApp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Member") || User.IsInRole("Leader") || User.IsInRole("Admin") || User.IsInRole("User"))
+                    {
+                        <li>@Html.ActionLink("Adaugare echipa", "New", "Teams")</li>
+
+
+                    }
+                    @if (User.IsInRole("Member") || User.IsInRole("Leader") || User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Echipele Mele", "Index", "Teams")</li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("See Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("See All Teams", "ShowAll", "Teams")</li>
+
+
+                    }
+
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
