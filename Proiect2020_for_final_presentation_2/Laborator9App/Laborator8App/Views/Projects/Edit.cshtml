@@ -1,0 +1,16 @@
+﻿@model  Laborator8App.Models.Project
+@{
+    ViewBag.Title = "Edit";
+}
+<form method="post" action="/Projects/Edit/@Model.ProjectId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <br />
+    @Html.HiddenFor(m => m.ProjectId)
+    <br />
+    @Html.Label("ProjectName", "ProjectName")
+    <br />
+    @Html.EditorFor(m => m.ProjectName)
+    @Html.ValidationMessage("ProjectName", "", new { @class = "text-danger" })
+    <br /><br />
+    <button class="btn btn-sm btn-success" type="submit">Modifica proiectul</button>
+</form>

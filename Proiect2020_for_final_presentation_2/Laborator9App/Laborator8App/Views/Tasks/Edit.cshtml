@@ -1,0 +1,34 @@
+﻿@model Laborator8App.Models.TaskClass
+@{
+    ViewBag.Title = "Edit";
+}
+<center>
+    <form method="post" action="/Tasks/Edit/@ViewBag.Task.TaskId">
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        <br />
+        <label>Titlu task</label>
+        <br />
+        <input type="text" name="Title" value="@ViewBag.Task.Title" />
+        <br /><br />
+        <label>Selecteaza statusul</label>
+        <br />
+        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.Status, "Value", "Text"), "Selecteaza statusul")
+        <br /><br />
+        <label>Continut Task</label>
+        <br />
+        <input type="text" name="Content" value="@ViewBag.Task.Content" />
+        <br /><br />
+        <label>StartData</label>
+        <br />
+        <input type="date" name="StartDate" value="@ViewBag.Task.StartDate" />
+        <br />
+        <label>EndDate</label>
+        <br />
+        <input type="date" name="EndDate" value="@ViewBag.Task.EndDate" />
+        <br />
+        <input type="hidden" name="ProjectId" value="@ViewBag.Task.ProjectId" />
+
+        <br />
+        <button type="submit">Modifica task</button>
+    </form>
+</center>
