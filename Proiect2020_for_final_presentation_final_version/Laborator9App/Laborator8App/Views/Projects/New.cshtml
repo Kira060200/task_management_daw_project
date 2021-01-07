@@ -10,9 +10,9 @@
         <h1>Adaugare Proiect</h1>
         <form method="post" action="/Projects/New">
 
-            @Html.Label("ProjectName", "")
+            @Html.Label("ProjectName", "Nume proiect")
             <br />
-            @Html.TextBox("ProjectName", "NUME PROIECT", new { @class = "form-control" })
+            @Html.TextBox("ProjectName", "", new { @class = "form-control" })
             @Html.ValidationMessage("Projectname", "", new { @class = "text-danger" })
             <br /><br />
             <input type="hidden" name="TeamId" value="@ViewBag.IdEchip" />

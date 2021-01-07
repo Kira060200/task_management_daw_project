@@ -9,33 +9,33 @@
 
         <form method="post" action="/Tasks/New">
 
-            @Html.Label("Title", "")
+            @Html.Label("Title", "Titlu Task")
             <br />
-            @Html.TextArea("Title", "Titlu Task", new { @class = "form-control" })
+            @Html.TextArea("Title", "", new { @class = "form-control" })
             @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
             <br /><br />
             <!--
-            <input type="text" name="Title" value="Titlu Task" />
-            <br />-->
+    <input type="text" name="Title" value="Titlu Task" />
+    <br />-->
 
-
+            <br />
             @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.Status, "Value", "Text"), "Selecteaza statusul")
             @Html.ValidationMessage("Status", "", new { @class = "text-danger" })
-            <br />
+            <br /><br />
 
 
-            @Html.Label("Content", "")
+            @Html.Label("Content", "Continut")
             <br />
-            @Html.TextArea("Content", "Continut", new { @class = "form-control" })
+            @Html.TextArea("Content", "", new { @class = "form-control" })
             @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
             <br /><br />
 
             <!--<textarea name="Content">Continut</textarea>
-            <br />-->
+    <br />-->
 
-            @Html.Label("WorkerName", "")
+            @Html.Label("WorkerName", "Numele membrului care va lucara la proiect")
             <br />
-            @Html.TextArea("WorkerName", "Membrul", new { @class = "form-control" })
+            @Html.TextArea("WorkerName", "", new { @class = "form-control" })
             @Html.ValidationMessage("WorkerName", "", new { @class = "text-danger" })
             <br /><br />
 

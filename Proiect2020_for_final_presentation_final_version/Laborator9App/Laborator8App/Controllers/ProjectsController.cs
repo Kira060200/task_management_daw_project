@@ -73,7 +73,7 @@ namespace Laborator8App.Controllers
                     project.UserId = User.Identity.GetUserId();
                     db.Projects.Add(project);
                     db.SaveChanges();
-                    TempData["message"] = "Proiectul a fost adaugata!";
+                    TempData["message"] = "Proiectul a fost adaugat!";
                     return Redirect("/Teams/Show/" + project.TeamId);
                 }
                 else
@@ -124,7 +124,7 @@ namespace Laborator8App.Controllers
                     {
                         project.ProjectName = requestProject.ProjectName;
                         db.SaveChanges();
-                        TempData["message"] = "Proiectul a fost modificata!";
+                        TempData["message"] = "Proiectul a fost modificat!";
                     }
 
                     return Redirect("/Teams/Show/" + project.TeamId);
@@ -149,7 +149,7 @@ namespace Laborator8App.Controllers
             {
                 db.Projects.Remove(project);
                 db.SaveChanges();
-                TempData["message"] = "Proiectul a fost stears";
+                TempData["message"] = "Proiectul a fost sters";
                 return Redirect("/Teams/Show/" + project.TeamId);
             }
             else
