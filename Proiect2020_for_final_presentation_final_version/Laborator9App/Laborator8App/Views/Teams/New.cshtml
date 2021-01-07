@@ -22,8 +22,8 @@
 <center>
 
     <form method="post" action="/Teams/New">
-        @Html.Label("TeamName", "")
-        @Html.TextBox("TeamName", "NUME ECHIPA", new { @class = "form-control" })
+        @Html.Label("TeamName", "Nume echipa")
+        @Html.TextBox("TeamName", "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.TeamName, null, new { @class = "text-danger" })
         <br /><br />
         <br />
